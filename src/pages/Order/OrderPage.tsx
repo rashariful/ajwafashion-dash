@@ -87,7 +87,8 @@ refetch()
           type="primary"
           size="small"
           onClick={() => sendToCourier(record._id)}
-          disabled={record.status !== "pending"}
+          disabled
+          // disabled={record.status !== "pending"}
         >
           Send to Courier
         </Button>
