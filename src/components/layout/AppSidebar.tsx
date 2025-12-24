@@ -112,7 +112,7 @@ export function AppSidebar() {
             {open && (
               <div>
                 <h2 className="text-lg font-bold text-foreground">Admin</h2>
-                <p className="text-xs text-muted-foreground">Priyosaj Management</p>
+                <p className="text-xs text-muted-foreground">Ajwa Fashion Management</p>
               </div>
             )}
           </div>
