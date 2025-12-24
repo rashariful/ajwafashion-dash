@@ -87,8 +87,8 @@ refetch()
           type="primary"
           size="small"
           onClick={() => sendToCourier(record._id)}
-          disabled
-          // disabled={record.status !== "pending"}
+          // disabled
+          disabled={record.status !== "pending"}
         >
           Send to Courier
         </Button>
@@ -99,7 +99,7 @@ refetch()
   return (
     <section>
       <CrudTemplate
-        title="Order Management"
+        title="Order Management "
         data={orders?.data || []}
         columns={columnsWithCourier}
         formFields={orderFormFields}
