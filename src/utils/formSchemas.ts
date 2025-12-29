@@ -2,9 +2,6 @@
 import { FormField } from "../components/common/FormBuilder/FormBuilder";
 
 // utils/formSchemas.ts
-
-
-
 export const bannerFormFields: FormField[] = [
   {
     name: "title",
@@ -20,7 +17,105 @@ export const bannerFormFields: FormField[] = [
     type: "text",
     placeholder: "Enter banner sub title",
     span: 12,
+    required: false, // matches schema
+  },
+  {
+    name: "details",
+    label: "Details",
+    type: "textarea",
+    placeholder: "Enter banner details",
+    span: 24,
+    required: false,
+  },
+  {
+    name: "offerText",
+    label: "Offer Text",
+    type: "text",
+    placeholder: "Enter offer text",
+    span: 12,
+    required: false,
+  },
+  {
+    name: "keyword",
+    label: "Keyword",
+    type: "text",
+    placeholder: "Enter keyword",
+    span: 12,
+    required: false,
+  },
+  {
+    name: "buttonText",
+    label: "Button Text",
+    type: "text",
+    placeholder: "Enter button text",
+    span: 12,
+    required: false,
+    initialValue: "Shop Now", // matches schema default
+  },
+  {
+    name: "isActive",
+    label: "Active Status",
+    type: "switch",
+    span: 12,
+    initialValue: true, // matches schema default
+  },
+];
+
+
+export const productFormFields: FormField[] = [
+  {
+    name: "title",
+    label: "Product Title",
+    type: "text",
+    placeholder: "Enter product title",
     required: true,
+    span: 24,
+  },
+
+  {
+    name: "details",
+    label: "Product Details",
+    type: "textarea",
+    placeholder: "Enter product details",
+    required: true,
+    span: 24,
+  },
+
+  {
+    name: "regulerPrice",
+    label: "Regular Price",
+    type: "number",
+    placeholder: "Enter regular price",
+    required: true,
+    span: 12,
+  },
+
+  {
+    name: "sellingPrice",
+    label: "Selling Price",
+    type: "number",
+    placeholder: "Enter selling price",
+    required: true,
+    span: 12,
+  },
+
+
+  // ✅ VARIANTS (single key-value object)
+  {
+    name: "variants.key",
+    label: "Variant Name",
+    type: "text",
+    placeholder: "Variant Name: Size/Color",
+    required: true,
+    span: 12,
+  },
+  {
+    name: "variants.value",
+    label: "Variant Value",
+    type: "text",
+    placeholder: "Color: Black, Red, Size: S, L ,XL",
+    required: true,
+    span: 12,
   },
   {
     name: "thumbnail",
@@ -41,118 +136,7 @@ export const bannerFormFields: FormField[] = [
       },
     ],
   },
-  {
-    name: "isActive",
-    label: "Active Status",
-    type: "switch",
-    span: 12,
-    initialValue: true,
-  },
-];
-
-
-export const productFormFields: FormField[] = [
-  // TITLE
-  {
-    name: "title",
-    label: "Product Title",
-    type: "text",
-    placeholder: "Enter product title",
-    span: 12,
-    required: true,
-  },
-
-  // PRICE
-  {
-    name: "price",
-    label: "Price",
-    type: "number",
-    placeholder: "Enter price",
-    span: 6,
-    required: true,
-  },
-
-  // DISCOUNT PRICE
-  {
-    name: "discountPrice",
-    label: "Discount Price",
-    type: "number",
-    placeholder: "Enter discount price",
-    span: 6,
-    required: true,
-  },
-
-  // WHY BUY (Repeater Field)
-  {
-    name: "whyBuy",
-    label: "Why Buy",
-    type: "dynamicList",
-    span: 24,
-    fields: [
-      {
-        name: "title",
-        label: "Point",
-        type: "text",
-        placeholder: "Enter why-buy point",
-        required: true,
-        span: 24,
-      },
-    ],
-  },
-  {
-    name: "images",
-    label: "Images",
-    type: "upload",
-    required: true,
-    span: 24,
-    multiple: true,
-    rules: [
-      {
-        validator: (_, value) => {
-          if (!value) return Promise.resolve();
-
-          const files = Array.isArray(value) ? value : [value]; // ensure array
-          const tooBig = files.some(
-            (file: File) => file.size > 2 * 1024 * 1024
-          );
-          if (tooBig) {
-            return Promise.reject(
-              new Error("Each image must be less than 2MB!")
-            );
-          }
-
-          return Promise.resolve();
-        },
-      },
-    ],
-  },
-
-
-  // VARIANTS (Repeater Field)
-  {
-    name: "variants",
-    label: "Color Variants",
-    type: "dynamicList",
-    span: 24,
-    fields: [
-      {
-        name: "colorName",
-        label: "Color Name",
-        type: "text",
-        placeholder: "Enter color name (ex: Black)",
-        required: true,
-        span: 8,
-      },
-      {
-        name: "image",
-        label: "Color Image Url",
-          placeholder: "Enter color Image Url",
-        type: "text",
-        required: true,
-        span: 8,
-      },
-    ],
-  },
+ 
 ];
 
 // Order Form Fields (Dynamic configuration based on OrderSchema)

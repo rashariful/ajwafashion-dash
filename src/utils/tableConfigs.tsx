@@ -3,6 +3,8 @@ import { ColumnsType } from "antd/es/table";
 import { Button, Image, message, Tag, Typography } from "antd";
 import axios from "axios";
 
+
+
 export const bannerColumns: ColumnsType<any> = [
   {
     title: "SL",
@@ -10,17 +12,6 @@ export const bannerColumns: ColumnsType<any> = [
     width: 60,
     align: "center",
     render: (_, __, index) => index + 1,
-  },
-    {
-    title: "Thumbnail",
-    dataIndex: "thumbnail",
-    key: "thumbnail",
-    render: (thumbnail: string) =>
-      thumbnail ? (
-        <Image width={50} height={50} src={thumbnail} alt="Banner" />
-      ) : (
-        "No Image"
-      ),
   },
   {
     title: "Title",
@@ -32,7 +23,27 @@ export const bannerColumns: ColumnsType<any> = [
     dataIndex: "subTitle",
     key: "subTitle",
   },
-
+  {
+    title: "Details",
+    dataIndex: "details",
+    key: "details",
+    ellipsis: true,
+  },
+  {
+    title: "Offer Text",
+    dataIndex: "offerText",
+    key: "offerText",
+  },
+  {
+    title: "Keyword",
+    dataIndex: "keyword",
+    key: "keyword",
+  },
+  {
+    title: "Button Text",
+    dataIndex: "buttonText",
+    key: "buttonText",
+  },
   {
     title: "Status",
     dataIndex: "isActive",
@@ -48,9 +59,8 @@ export const bannerColumns: ColumnsType<any> = [
     ],
     onFilter: (value, record) => record.isActive === value,
   },
-  
-  
 ];
+
 
 export const productColumns: ColumnsType<any> = [
   {
@@ -58,82 +68,69 @@ export const productColumns: ColumnsType<any> = [
     key: "index",
     width: 60,
     align: "center",
-    render: (_, __, index) => index + 1,
+    render: (_: any, __: any, index: number) => index + 1,
   },
- {
-    title: "Images",
-    dataIndex: "images",
-    key: "images",
-    render: (images: string[]) =>
-      Array.isArray(images) && images.length > 0 ? (
-        <Image.PreviewGroup>
-          {images.map((img, i) => (
-            <Image
-              key={i}
-              width={40}
-              height={40}
-              src={img}
-              style={{ marginRight: 5, borderRadius: 6 }}
-            />
-          ))}
-        </Image.PreviewGroup>
+
+  {
+    title: "Thumbnail",
+    dataIndex: "thumbnail",
+    key: "thumbnail",
+    render: (thumbnail: string) =>
+      thumbnail ? (
+        <Image
+          width={50}
+          height={50}
+          src={thumbnail}
+          alt="Product"
+          style={{ borderRadius: 6 }}
+        />
       ) : (
-        "No Image"
+        <Tag>No Image</Tag>
       ),
   },
+
   {
     title: "Title",
     dataIndex: "title",
     key: "title",
+    render: (title: string) => (
+      <strong>{title}</strong>
+    ),
   },
 
   {
-    title: "Price",
-    dataIndex: "price",
-    key: "price",
+    title: "Regular Price",
+    dataIndex: "regulerPrice", // ⚠️ backend spelling
+    key: "regulerPrice",
+    render: (price: number) => `৳${price}`,
   },
 
   {
-    title: "Discount Price",
-    dataIndex: "discountPrice",
-    key: "discountPrice",
+    title: "Selling Price",
+    dataIndex: "sellingPrice",
+    key: "sellingPrice",
+    render: (price: number) => (
+      <span style={{ color: "green", fontWeight: 600 }}>
+        ৳{price}
+      </span>
+    ),
   },
 
- 
-
   {
-    title: "Variants",
+    title: "Variant",
     dataIndex: "variants",
     key: "variants",
-    render: (variants: any[]) =>
-      variants?.length ? (
-        variants.map((v, i) => (
-          <Tag key={i} color="blue">
-            {v.colorName} ({v.stock})
-          </Tag>
-        ))
+    render: (variants: { key: string; value: string }) =>
+      variants?.key && variants?.value ? (
+        <Tag color="blue">
+          {variants.key}: {variants.value}
+        </Tag>
       ) : (
         <Tag>No Variant</Tag>
       ),
   },
-   {
-    title: "Why Buy",
-    dataIndex: "whyBuy",
-    key: "whyBuy",
-    render: (whyBuy: any[]) =>
-      Array.isArray(whyBuy) && whyBuy.length > 0 ? (
-        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-          {whyBuy.map((item, i) => (
-            <Tag key={i} color="green">
-              {item.title}
-            </Tag>
-          ))}
-        </div>
-      ) : (
-        <Tag color="default">No Reasons</Tag>
-      ),
-  },
 ];
+
 
 export const teamColumns: ColumnsType<any> = [
   {

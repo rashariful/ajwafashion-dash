@@ -34,23 +34,19 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { RiProductHuntFill } from "react-icons/ri";
 
 const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
+  { title: "Banner", url: "/banner", icon: Flag },
+  { title: "Key Point", url: "/key", icon: BriefcaseBusiness },
   // { title: "Tours", url: "/tours", icon: MapPin },
   // { title: "News", url: "/news", icon: MapPin },
   // { title: "News-manage", url: "/news-manage", icon: MapPin },
   // { title: "Hotels", url: "/hotels", icon: Hotel },
-    { title: "Product", url: "/product", icon: BriefcaseBusiness  },
+    { title: "Product", url: "/product", icon: RiProductHuntFill  },
     { title: "Order", url: "/order", icon: BriefcaseBusiness  },
- 
-  {
-    title: "Banner",
-    icon: Flag ,
-    children: [
-      { title: "Banner List", url: "/banner", icon: Flag  },
-    ],
-  },
+
   // {
   //   title: "Service",
   //   icon: Columns3 ,
