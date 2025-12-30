@@ -24,6 +24,7 @@ import QuotePage from "@/pages/Quote/QuotePage";
 import FaqPage from "@/pages/Faq/FaqPage";
 import OrderPage from "@/pages/Order/OrderPage";
 import ProductPage from "@/pages/Product/ProductPage";
+import KeyPointPage from "@/pages/KeyPoint/KeyPointPage";
 
 const AppRoutes = () => (
   <Routes>
@@ -36,7 +37,7 @@ const AppRoutes = () => (
       <Route path="order" element={<OrderPage />} />
       <Route path="product" element={<ProductPage />} />
 
-      <Route path="bookings" element={<Bookings />} />
+      <Route path="key" element={<KeyPointPage />} />
       <Route path="customers" element={<Customers />} />
 
       <Route path="banner" element={<BannerPage />} />

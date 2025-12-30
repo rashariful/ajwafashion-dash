@@ -14,9 +14,6 @@ import axios from "axios";
 // ✅ Send to courier function
 const API_BASE_URL = import.meta.env.VITE_REACT_APP_ROOT;
 
-
-
-
 const OrderPage: React.FC = () => {
   const { data: orders, isLoading, refetch } = useGetAllOrderQuery();
   const [createOrder] = useCreateOrderMutation();

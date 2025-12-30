@@ -30,48 +30,57 @@ const BannerPage: React.FC = () => {
   const [updateBanner] = useUpdateBannerMutation();
   const [deleteBanner] = useDeleteBannerMutation();
 
-  // Convert form data to FormData for file upload
-  const convertToFormData = (data: Record<string, any>) => {
-    const formData = new FormData();
-    Object.entries(data).forEach(([key, value]) => {
-      if (value && value.originFileObj instanceof File) {
-        formData.append(key, value.originFileObj);
-      } else if (value instanceof File) {
-        formData.append(key, value);
-      } else if (value instanceof Date) {
-        formData.append(key, value.toISOString());
-      } else if (typeof value === "object" && value !== null) {
-        formData.append(key, JSON.stringify(value));
-      } else if (value !== undefined && value !== null) {
-        formData.append(key, String(value));
-      }
-    });
-    return formData;
-  };
 
-  // Handle add
-  const handleAdd = async (data: BannerFormData) => {
-    try {
-      const formData = convertToFormData(data);
-      await createBanner(formData).unwrap();
-      message.success("Banner added successfully");
-      refetch();
-    } catch (error: any) {
-      message.error(error?.data?.message || "Failed to add banner");
-    }
-  };
+const handleAdd = async (data: BannerFormData) => {
+  if (!data.title || data.title.trim() === "") {
+    message.error("Title is required");
+    return;
+  }
+
+  try {
+    // Send JSON directly
+    await createBanner(data).unwrap();
+    message.success("Banner created successfully");
+    refetch();
+  } catch (error: any) {
+    message.error(error?.data?.message || "Failed to add banner");
+  }
+};
+
+
+// Handle edit
+// const handleEdit = async (id: string, data: BannerFormData) => {
+//   if (!data.title || data.title.trim() === "") {
+//     message.error("Title is required");
+//     return;
+//   }
+
+//   try {
+//     // Send JSON directly instead of FormData
+//     await updateBanner({ id, ...data }).unwrap();
+//     message.success("Banner updated successfully");
+//     refetch();
+//   } catch (error: any) {
+//     message.error(error?.data?.message || "Failed to update banner");
+//   }
+// };
 
   // Handle edit
-  const handleEdit = async (id: string, data: BannerFormData) => {
-    try {
-      const formData = convertToFormData(data);
-      await updateBanner({ id, data: formData }).unwrap();
-      message.success("Banner updated successfully");
-      refetch();
-    } catch (error: any) {
-      message.error(error?.data?.message || "Failed to update banner");
-    }
-  };
+const handleEdit = async (id: string, data: BannerFormData) => {
+  if (!data.title || data.title.trim() === "") {
+    message.error("Title is required");
+    return;
+  }
+
+  try {
+    await updateBanner({ id, data }).unwrap(); // <-- pass `data` here
+    message.success("Banner updated successfully");
+    refetch();
+  } catch (error: any) {
+    message.error(error?.data?.message || "Failed to update banner");
+  }
+};
+
 
   // Handle delete
   const handleDelete = async (id: string | number) => {
@@ -88,7 +97,7 @@ const BannerPage: React.FC = () => {
 const handleToggle = async (record: any, checked: boolean) => {
   try {
     await updateBanner({
-      id: record._id,           // <-- record._id পাঠাতে হবে
+      id: record,           // <-- record._id পাঠাতে হবে
       data: { isActive: checked },
     }).unwrap();
 

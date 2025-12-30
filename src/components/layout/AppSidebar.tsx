@@ -2,22 +2,13 @@ import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutDashboard,
   MapPin,
-  Hotel,
-  Calendar,
-  Users,
-  Star,
   Settings,
   ChevronLeft,
   ChevronDown,
-  ChevronRight,
-  UsersRound ,
-  Handshake ,
   Flag ,
-  Columns3 ,
   BriefcaseBusiness ,
-  Images ,
- MessageCircleHeart ,
- Contact ,
+ Box,
+ ShoppingBag,
 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -34,42 +25,14 @@ import {
   SidebarHeader,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { RiProductHuntFill } from "react-icons/ri";
+
 
 const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Banner", url: "/banner", icon: Flag },
   { title: "Key Point", url: "/key", icon: BriefcaseBusiness },
-  // { title: "Tours", url: "/tours", icon: MapPin },
-  // { title: "News", url: "/news", icon: MapPin },
-  // { title: "News-manage", url: "/news-manage", icon: MapPin },
-  // { title: "Hotels", url: "/hotels", icon: Hotel },
-    { title: "Product", url: "/product", icon: RiProductHuntFill  },
-    { title: "Order", url: "/order", icon: BriefcaseBusiness  },
-
-  // {
-  //   title: "Service",
-  //   icon: Columns3 ,
-  //   children: [
-  //     { title: "Service", url: "/service", icon: Columns3  },
-  //   ],
-  // },
-
-  // { title: "Archive", url: "/archive", icon: BriefcaseBusiness  },
-  // { title: "Gallery", url: "/gallery", icon: Images  },
-  //   { title: "Testimonial", url: "/testimonial", icon: MessageCircleHeart },
-  //   { title: "Contact", url: "/contact", icon: Contact  },
-  //   { title: "Quote", url: "/quote", icon: Contact  },
-  //   { title: "Faq", url: "/faq", icon: Contact  },
-  // // { title: "Bookings", url: "/bookings", icon: Calendar },
-  // {
-  //   title: "Team manage",
-  //   icon: UsersRound ,
-  //   children: [
-  //     { title: "team", url: "/team", icon: UsersRound  },
-  //   ],
-  // },
-  // { title: "Partner", url: "/partner", icon: Handshake  },
+    { title: "Product", url: "/product", icon: Box  },
+    { title: "Order", url: "/order", icon: ShoppingBag  },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 

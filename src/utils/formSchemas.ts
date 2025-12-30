@@ -2,10 +2,49 @@
 import { FormField } from "../components/common/FormBuilder/FormBuilder";
 
 // utils/formSchemas.ts
-export const bannerFormFields: FormField[] = [
+
+export const keyPointFormFields: FormField[] = [
   {
     name: "title",
     label: "Title",
+    type: "text",
+    placeholder: "Enter title",
+    span: 12,
+    required: true,
+  },
+  {
+    name: "keyPoint",
+    label: "Key Points",
+    type: "dynamicList",
+    placeholder: "Enter a key point",
+    span: 24,
+    required: true,
+    // Specify the single field inside the list
+    fields: [
+      {
+        name: "value", // internal name for each item
+        label: "Key Point",
+        type: "text",
+        placeholder: "Enter key point",
+        required: true,
+      },
+    ],
+  },
+  {
+    name: "images",
+    label: "Images",
+    type: "upload",
+    span: 24,
+    multiple: true,
+    required: true,
+  },
+];
+
+
+export const bannerFormFields: FormField[] = [
+  {
+    name: "title",
+    label: "title",
     type: "text",
     placeholder: "Enter banner title",
     span: 12,

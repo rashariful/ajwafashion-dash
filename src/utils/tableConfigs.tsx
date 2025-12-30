@@ -5,6 +5,52 @@ import axios from "axios";
 
 
 
+export const keyPointColumns: ColumnsType<any> = [
+  {
+    title: "SL",
+    key: "index",
+    width: 60,
+    align: "center",
+    render: (_, __, index) => index + 1,
+  },
+  {
+    title: "Title",
+    dataIndex: "title",
+    key: "title",
+  },
+  {
+    title: "Key Points",
+    dataIndex: "keyPoint",
+    key: "keyPoint",
+    render: (points: string[]) => points.join(", "), // display as comma-separated
+  },
+  {
+    title: "Images",
+    dataIndex: "images",
+    key: "images",
+    render: (images: string[]) =>
+      images.map((img, idx) => (
+        <Image key={idx} width={50} height={50} src={img} alt="KeyPoint" />
+      )),
+  },
+  {
+    title: "Status",
+    dataIndex: "isActive",
+    key: "isActive",
+    render: (isActive: boolean) => (
+      <Tag color={isActive ? "green" : "red"}>
+        {isActive ? "Active" : "Inactive"}
+      </Tag>
+    ),
+    filters: [
+      { text: "Active", value: true },
+      { text: "Inactive", value: false },
+    ],
+    onFilter: (value, record) => record.isActive === value,
+  },
+];
+
+
 export const bannerColumns: ColumnsType<any> = [
   {
     title: "SL",

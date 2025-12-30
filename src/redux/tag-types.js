@@ -13,6 +13,7 @@ export const tagTypes = {
   testimonial: "testimonial",
   contact: "contact",
   quote: "quote",
+  keyPoint: "keyPoint",
   faq: "faq",
   order: "order",
   product: "product",

@@ -12,17 +12,18 @@ import {
 } from "@/redux/api/productApi";
 
 type ProductFormData = {
-  title: string;
-  price: number;
-  discountPrice: number;
-  images?: File[];
-  whyBuy?: { title: string }[];
-  variants?: {
-    colorName: string;
-    image?: File;
-    stock: number;
-  }[];
+  title: string;                  // matches `title`
+  details: string;                // matches `details`
+  regulerPrice: number;           // matches `regulerPrice`
+  sellingPrice: number;           // matches `sellingPrice`
+  thumbnail: File | null;         // single File, matches schema String
+  variants?: {                     // matches schema object
+    key: string;
+    value: string;
+  };
+  isActive?: boolean;              // optional, default true
 };
+
 
 const ProductPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,70 +35,37 @@ const ProductPage: React.FC = () => {
   const [updateProduct] = useUpdateProductMutation();
   const [deleteProduct] = useDeleteProductMutation();
 
-  // Convert form data to FormData
+// Convert form data to FormData (handles single File and nested objects)
 const convertToFormData = (data: Record<string, any>) => {
   const formData = new FormData();
 
-  const appendFormData = (form: FormData, key: string, value: any) => {
+  Object.entries(data).forEach(([key, value]) => {
     if (value === undefined || value === null) return;
 
-    // If value is File
     if (value instanceof File) {
-      form.append(key, value);
-      return;
+      formData.append(key, value);
+    } else if (Array.isArray(value)) {
+      // Array of files
+      if (value.every((v) => v instanceof File)) {
+        value.forEach((file) => formData.append(key, file));
+      }
+      // Array of objects
+      else if (value.every((v) => typeof v === "object")) {
+        value.forEach((obj) => formData.append(`${key}[]`, JSON.stringify(obj)));
+      }
+      // Array of primitives
+      else {
+        value.forEach((v) => formData.append(`${key}[]`, String(v)));
+      }
+    } else if (typeof value === "object") {
+      formData.append(key, JSON.stringify(value));
+    } else {
+      formData.append(key, String(value));
     }
-
-    // If value is an array
-    if (Array.isArray(value)) {
-      value.forEach((item, index) => {
-        // If array item is File
-        if (item instanceof File) {
-          form.append(`${key}[${index}]`, item);
-        }
-        // If array item is object
-        else if (typeof item === "object") {
-          Object.entries(item).forEach(([childKey, childValue]) => {
-            // Nested File inside object
-            if (childValue instanceof File) {
-              form.append(`${key}[${index}][${childKey}]`, childValue);
-            } else {
-              form.append(`${key}[${index}][${childKey}]`, String(childValue));
-            }
-          });
-        }
-        // Primitive array item
-        else {
-          form.append(`${key}[${index}]`, String(item));
-        }
-      });
-      return;
-    }
-
-    // If value is object
-    if (typeof value === "object") {
-      Object.entries(value).forEach(([childKey, childValue]) => {
-        // File inside object
-        if (childValue instanceof File) {
-          form.append(`${key}[${childKey}]`, childValue);
-        } else {
-          form.append(`${key}[${childKey}]`, String(childValue));
-        }
-      });
-      return;
-    }
-
-    // Primitive
-    form.append(key, String(value));
-  };
-
-  Object.entries(data).forEach(([key, value]) => {
-    appendFormData(formData, key, value);
   });
 
   return formData;
 };
-
-
 
 //   variyent chara kaj kortese ata 
 // const convertToFormData = (data: Record<string, any>) => {
@@ -154,8 +122,7 @@ const convertToFormData = (data: Record<string, any>) => {
 
   // ADD Product
   const handleAdd = async (data: ProductFormData) => {
-    
-    console.log(data, "product info")
+  
     try {
       const formData = convertToFormData(data);
       await createProduct(formData).unwrap();
@@ -189,6 +156,16 @@ const convertToFormData = (data: Record<string, any>) => {
     }
   };
 
+  const handleToggle = async (record: any, checked: boolean) => {
+    try {
+      await updateProduct({ id: record, data: { isActive: checked } }).unwrap();
+      message.success(`product ${checked ? "activated" : "deactivated"} successfully`);
+      refetch();
+    } catch (err) {
+      console.error(err);
+      message.error("Failed to update product");
+    }
+  };
   return (
     <section>
       <CrudTemplate
@@ -201,8 +178,8 @@ const convertToFormData = (data: Record<string, any>) => {
         onAdd={handleAdd}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        searchable={true}
-        onSearch={(v: string) => setSearchTerm(v)}
+      onToggle={handleToggle}
+      
       />
     </section>
   );

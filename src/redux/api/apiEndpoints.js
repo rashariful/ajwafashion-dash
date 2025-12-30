@@ -61,6 +61,10 @@ const apiEndpoints = {
     all: "/quote",
     withId: (id) => `/quote/${id}`,
   },
+  keyPoint: {
+    all: "/keypoint",
+    withId: (id) => `/keypoint/${id}`,
+  },
   faq: {
     all: "/faq",
     withId: (id) => `/faq/${id}`,
@@ -92,6 +96,7 @@ export const {
   partner,
   quote,
   faq,
+  keyPoint,
   order,
   product,
 } = apiEndpoints;
