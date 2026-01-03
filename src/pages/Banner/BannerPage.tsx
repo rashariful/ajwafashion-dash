@@ -48,23 +48,6 @@ const handleAdd = async (data: BannerFormData) => {
 };
 
 
-// Handle edit
-// const handleEdit = async (id: string, data: BannerFormData) => {
-//   if (!data.title || data.title.trim() === "") {
-//     message.error("Title is required");
-//     return;
-//   }
-
-//   try {
-//     // Send JSON directly instead of FormData
-//     await updateBanner({ id, ...data }).unwrap();
-//     message.success("Banner updated successfully");
-//     refetch();
-//   } catch (error: any) {
-//     message.error(error?.data?.message || "Failed to update banner");
-//   }
-// };
-
   // Handle edit
 const handleEdit = async (id: string, data: BannerFormData) => {
   if (!data.title || data.title.trim() === "") {

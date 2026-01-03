@@ -178,6 +178,18 @@ export const productFormFields: FormField[] = [
  
 ];
 
+
+export const promotionFormFields: FormField[] = [
+  {
+    name: "title",
+    label: "Title",
+    type: "text",
+    placeholder: "Enter promotion title",
+    span: 24,
+    required: true,
+  },
+];
+
 // Order Form Fields (Dynamic configuration based on OrderSchema)
 export const orderFormFields = [
   // 🧍 Customer Info

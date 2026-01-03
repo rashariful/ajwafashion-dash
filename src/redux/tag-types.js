@@ -17,6 +17,7 @@ export const tagTypes = {
   faq: "faq",
   order: "order",
   product: "product",
+  promotion: "promotion",
 
 
 };

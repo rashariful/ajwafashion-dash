@@ -4,9 +4,6 @@ import DashboardLayout from "@/components/layout/DashboardLayout";
 
 // Page components
 import Dashboard from "@/pages/Dashboard";
-import Tours from "@/pages/Tours";
-
-import Bookings from "@/pages/Bookings";
 import Customers from "@/pages/Customers";
 import Settings from "@/pages/Settings";
 
@@ -15,7 +12,6 @@ import Login from "@/pages/Auth/Login"; // if you have
 import Team from "@/pages/Team/Team";
 import PartnerPage from "@/pages/Partner/PartnerPage";
 import BannerPage from "@/pages/Banner/BannerPage";
-import GalleryPage from "@/pages/Gallery/GalleryPage";
 import ServicePage from "@/pages/Service/ServicePage";
 import PortfolioPage from "@/pages/Portfolio/PortfolioPage";
 import TestimonialPage from "@/pages/Testimonial/TestimonialPage";
@@ -25,6 +21,7 @@ import FaqPage from "@/pages/Faq/FaqPage";
 import OrderPage from "@/pages/Order/OrderPage";
 import ProductPage from "@/pages/Product/ProductPage";
 import KeyPointPage from "@/pages/KeyPoint/KeyPointPage";
+import PromotionPage from "@/pages/Promotion/PromotionPage";
 
 const AppRoutes = () => (
   <Routes>
@@ -43,7 +40,7 @@ const AppRoutes = () => (
       <Route path="banner" element={<BannerPage />} />
       <Route path="service" element={<ServicePage />} />
       <Route path="archive" element={<PortfolioPage />} />
-      <Route path="gallery" element={<GalleryPage />} />
+      <Route path="promotion" element={<PromotionPage />} />
       <Route path="testimonial" element={<TestimonialPage />} />
       <Route path="contact" element={<ContactPage />} />
       <Route path="quote" element={<QuotePage />} />

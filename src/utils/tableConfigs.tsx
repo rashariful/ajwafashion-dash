@@ -108,6 +108,36 @@ export const bannerColumns: ColumnsType<any> = [
 ];
 
 
+export const promotionColumns: ColumnsType<any> = [
+  {
+    title: "SL",
+    key: "index",
+    width: 60,
+    align: "center",
+    render: (_, __, index) => index + 1,
+  },
+  {
+    title: "Title",
+    dataIndex: "title",
+    key: "title",
+  },
+  {
+    title: "Status",
+    dataIndex: "isActive",
+    key: "isActive",
+    render: (isActive: boolean) => (
+      <Tag color={isActive ? "green" : "red"}>
+        {isActive ? "Active" : "Inactive"}
+      </Tag>
+    ),
+    filters: [
+      { text: "Active", value: true },
+      { text: "Inactive", value: false },
+    ],
+    onFilter: (value, record) => record.isActive === value,
+  },
+];
+
 export const productColumns: ColumnsType<any> = [
   {
     title: "SL",

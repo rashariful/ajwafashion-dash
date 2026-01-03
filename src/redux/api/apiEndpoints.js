@@ -77,6 +77,10 @@ const apiEndpoints = {
     all: "/product",
     withId: (id) => `/product/${id}`,
   },
+  promotion: {
+    all: "/promotion",
+    withId: (id) => `/promotion/${id}`,
+  },
 };
 
 export const {
@@ -99,4 +103,5 @@ export const {
   keyPoint,
   order,
   product,
+  promotion,
 } = apiEndpoints;

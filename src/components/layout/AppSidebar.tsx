@@ -33,6 +33,7 @@ const items = [
   { title: "Key Point", url: "/key", icon: BriefcaseBusiness },
     { title: "Product", url: "/product", icon: Box  },
     { title: "Order", url: "/order", icon: ShoppingBag  },
+    { title: "Promotion", url: "/promotion", icon: ShoppingBag  },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
