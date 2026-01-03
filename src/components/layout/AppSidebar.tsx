@@ -5,10 +5,10 @@ import {
   Settings,
   ChevronLeft,
   ChevronDown,
-  Flag ,
-  BriefcaseBusiness ,
- Box,
- ShoppingBag,
+  Flag,
+  BriefcaseBusiness,
+  Box,
+  ShoppingBag,
 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,14 +26,13 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-
 const items = [
   { title: "Dashboard", url: "/", icon: LayoutDashboard },
   { title: "Banner", url: "/banner", icon: Flag },
   { title: "Key Point", url: "/key", icon: BriefcaseBusiness },
-    { title: "Product", url: "/product", icon: Box  },
-    { title: "Order", url: "/order", icon: ShoppingBag  },
-    { title: "Promotion", url: "/promotion", icon: ShoppingBag  },
+  { title: "Product", url: "/product", icon: Box },
+  { title: "Order", url: "/order", icon: ShoppingBag },
+  { title: "Promotion", url: "/promotion", icon: ShoppingBag },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 
@@ -72,7 +71,9 @@ export function AppSidebar() {
             {open && (
               <div>
                 <h2 className="text-lg font-bold text-foreground">Admin</h2>
-                <p className="text-xs text-muted-foreground">Ajwa Fashion Management</p>
+                <p className="text-xs text-muted-foreground">
+                  Ajwa Fashion Management
+                </p>
               </div>
             )}
           </div>
@@ -107,14 +108,24 @@ export function AppSidebar() {
                           )}`}
                         >
                           <div className="flex items-center gap-3 ">
-                            <item.icon className={`w-5 h-5 ${isActive(item.url) ? "text-primary" : "text-muted-foreground"}`} />
+                            <item.icon
+                              className={`w-5 h-5 ${
+                                isActive(item.url)
+                                  ? "text-primary"
+                                  : "text-muted-foreground"
+                              }`}
+                            />
                             {open && (
-                              <span className="text-md font-semibold">{item.title}</span>
+                              <span className="text-md font-semibold">
+                                {item.title}
+                              </span>
                             )}
                           </div>
                           {open && (
                             <motion.div
-                              animate={{ rotate: expanded === item.title ? 0 : -90 }}
+                              animate={{
+                                rotate: expanded === item.title ? 0 : -90,
+                              }}
                               transition={{ duration: 0.2 }}
                             >
                               <ChevronDown className="w-4 h-4 text-muted-foreground" />
@@ -129,8 +140,18 @@ export function AppSidebar() {
                             item.url
                           )}`}
                         >
-                          <item.icon className={`w-5 h-5 ${isActive(item.url) ? "text-primary" : "text-muted-foreground"}`} />
-                          {open && <span className="text-md font-semibold">{item.title}</span>}
+                          <item.icon
+                            className={`w-5 h-5 ${
+                              isActive(item.url)
+                                ? "text-primary"
+                                : "text-muted-foreground"
+                            }`}
+                          />
+                          {open && (
+                            <span className="text-md font-semibold">
+                              {item.title}
+                            </span>
+                          )}
                         </NavLink>
                       )}
                     </SidebarMenuButton>
@@ -141,21 +162,21 @@ export function AppSidebar() {
                     {item.children && expanded === item.title && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
-                        animate={{ 
+                        animate={{
                           height: "auto",
                           opacity: 1,
                           transition: {
                             height: { duration: 0.2 },
-                            opacity: { duration: 0.15, delay: 0.05 }
-                          }
+                            opacity: { duration: 0.15, delay: 0.05 },
+                          },
                         }}
-                        exit={{ 
+                        exit={{
                           height: 0,
                           opacity: 0,
                           transition: {
                             height: { duration: 0.2 },
-                            opacity: { duration: 0.1 }
-                          }
+                            opacity: { duration: 0.1 },
+                          },
                         }}
                         className="overflow-hidden"
                       >
@@ -168,7 +189,13 @@ export function AppSidebar() {
                                 child.url
                               )}`}
                             >
-                              <child.icon className={`w-4 h-4 ${isActive(child.url) ? "text-primary" : "text-muted-foreground"}`} />
+                              <child.icon
+                                className={`w-4 h-4 ${
+                                  isActive(child.url)
+                                    ? "text-primary"
+                                    : "text-muted-foreground"
+                                }`}
+                              />
                               {open && <span>{child.title}</span>}
                             </NavLink>
                           ))}
