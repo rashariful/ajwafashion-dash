@@ -12,6 +12,7 @@ export const keyPointFormFields: FormField[] = [
     span: 12,
     required: true,
   },
+
   {
     name: "keyPoint",
     label: "Key Points",
@@ -146,7 +147,7 @@ export const productFormFields: FormField[] = [
     type: "text",
     placeholder: "Variant Name: Size/Color",
     required: true,
-    span: 12,
+    span: 8,
   },
   {
     name: "variants.value",
@@ -154,7 +155,15 @@ export const productFormFields: FormField[] = [
     type: "text",
     placeholder: "Color: Black, Red, Size: S, L ,XL",
     required: true,
-    span: 12,
+    span: 8,
+  },
+  {
+    name: "orderNumber",
+    label: "Product serial",
+    type: "text",
+    placeholder: "Product serial",
+    required: true,
+    span: 8,
   },
   {
     name: "thumbnail",

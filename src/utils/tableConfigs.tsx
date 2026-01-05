@@ -173,6 +173,14 @@ export const productColumns: ColumnsType<any> = [
       <strong>{title}</strong>
     ),
   },
+  {
+    title: "Searial Number",
+    dataIndex: "serialNumber",
+    key: "orderNumber",
+    render: (orderNumber: string) => (
+      <strong>{orderNumber}</strong>
+    ),
+  },
 
   {
     title: "Regular Price",
